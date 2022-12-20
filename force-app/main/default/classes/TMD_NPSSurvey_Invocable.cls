@@ -37,7 +37,7 @@ public with sharing class TMD_NPSSurvey_Invocable {
 
             if(!orderIds.isEmpty()) {
                 if(orderIds.size() <= 30) {
-                    List<Order> ordersToSendSurvey = [SELECT Id, OrderNumber, Account.PersonEmail, Survey_Synced__c FROM Order WHERE Id IN :orderIds AND Survey_Synced__c = false];
+                    List<Order> ordersToSendSurvey = [SELECT Id, OrderNumber, Account.PersonEmail, Survey_Synced__c FROM Order WHERE Id IN :orderIds AND Survey_Synced__c = false AND Account.PersonEmail != null];
                     // parse the request for the NPS system
                     TMD_NPSSurvey_RequestParser parser = new TMD_NPSSurvey_RequestParser();
                     List<TMD_NPSSurvey_RequestParser.NPSSurvey_Request_Wrapper> listOfRequestBodies = (List<TMD_NPSSurvey_RequestParser.NPSSurvey_Request_Wrapper>) parser.parseRequest(ordersToSendSurvey);
