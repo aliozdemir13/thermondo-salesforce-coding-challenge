@@ -18,7 +18,7 @@ public with sharing class TMD_NPSSurvey_Batch implements Database.batchable<sObj
     }
 
     public Database.QueryLocator start(Database.BatchableContext BC) {
-        return Database.getQueryLocator([SELECT Id, OrderNumber, Account.PersonEmail, Survey_Synced__c FROM Order WHERE Id IN :orderIds AND Survey_Synced__c = false]);
+        return Database.getQueryLocator([SELECT Id, OrderNumber, Account.PersonEmail, Survey_Synced__c FROM Order WHERE Id IN :orderIds AND Survey_Synced__c = false AND Account.PersonEmail != null]);
     }
     
     public void execute(Database.BatchableContext BC, List<Order> records) {  
