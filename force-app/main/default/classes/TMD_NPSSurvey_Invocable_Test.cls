@@ -36,9 +36,6 @@ private with sharing class TMD_NPSSurvey_Invocable_Test {
         List<TMD_NPSSurvey_Invocable.Result> res = TMD_NPSSurvey_Invocable.execute(requestsList);
 
         // check if error logged
-        System.debug('44' + [SELECT Id, Error_Message__c, Class_Name__c FROM TMD_Error_Log__c]);
-        System.debug('45' + [SELECT Id FROM TMD_Error_Log__c].isEmpty());
-        System.debug('46' + res[0].isSuccess);
         System.assert([SELECT Id FROM TMD_Error_Log__c].isEmpty());
         // check if code executed successfully
         System.assert(res[0].isSuccess);
@@ -61,8 +58,6 @@ private with sharing class TMD_NPSSurvey_Invocable_Test {
         List<TMD_NPSSurvey_Invocable.Result> res = TMD_NPSSurvey_Invocable.execute(requestsList);
 
         // check if error logged
-        System.debug('66' + [SELECT Id, Error_Message__c, Class_Name__c FROM TMD_Error_Log__c]);
-        System.debug('67' + [SELECT Id FROM Order WHERE Survey_Synced__c = false].size());
         System.assert([SELECT Id FROM TMD_Error_Log__c].isEmpty());
         // check for unprocessed orders
         System.assert([SELECT Id FROM Order WHERE Survey_Synced__c = false].size() > 0);
