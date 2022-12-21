@@ -28,7 +28,7 @@ public with sharing class TMD_ErrorLogger {
     public void addError(Exception e, HttpRequest req, HttpResponse res, String className) {
         TMD_Error_Log__c error = new TMD_Error_Log__c(
             Error_Message__c = e.getMessage(),
-            //Stack_Trace__c = e.getStackTraceString(),
+            Stack_Trace__c = e.getStackTraceString(),
             User__c = UserInfo.getUserId(),
             Class_Name__c = className
         );
